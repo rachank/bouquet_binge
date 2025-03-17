@@ -20,12 +20,8 @@ def obtain_sales_info():
     It continues to ask until the numbers are valid and returns a list
     of 7 integers.
     """
-
-    # Variable to track if data is valid 
-    valid_info = False
-
-    # Loop until data is valid
-    while not valid_info:
+   
+    while True:
         print("Please enter bouquet sales data from the last week of sales.")
         print("Data order: Roses, Orchids, Lilies, Carnations, Hydrandeas, Mums, and Seasonal.")
         print("Example: 20,30,20,10,20,30,25\n")
@@ -55,12 +51,38 @@ def obtain_sales_info():
         if all_values:
             print("Sales Information is Valid. Thanks!")
             valid_info = True
-
-    # Convert values to integers
+        
+    # Convert values to integers.
     sales_info = [int(value) for value in sales_info]
 
     print("Sales data:", sales_info)
-    
+
     return sales_info
 
-    
+def update_sales_worksheet(info):
+    """
+    Update sales worksheet by adding new row according to the list data given.
+    """
+    print("Updating Sales Worksheet....\n")
+    sales_worksheet = SHEET.worksheet("sales")
+    sales_worksheet.append_row(info)
+    print("Sales Worksheet has Updated Successfully!\n")
+
+def update_excess_worksheet(info):
+    """
+    Update excess worksheet by adding new row according to the list data given.
+    """
+    print("Updating Excess Worksheet...\n")
+    excess_worksheet = SHEET.worksheet("excess")
+    surplus_worksheet.append_row(info)
+    print("Excess Worksheet Updated successfully!\n")
+
+
+
+
+
+print("Welcome to the Bouquet Binge Flower Shop Inventory Information") 
+
+
+
+
