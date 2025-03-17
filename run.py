@@ -59,6 +59,7 @@ def obtain_sales_info():
 
     return sales_info
 
+
 def update_sales_worksheet(info):
     """
     Update sales worksheet by adding new row according to the list data given.
@@ -68,6 +69,7 @@ def update_sales_worksheet(info):
     sales_worksheet.append_row(info)
     print("Sales Worksheet has Updated Successfully!\n")
 
+
 def update_excess_worksheet(info):
     """
     Update excess worksheet by adding new row according to the list data given.
@@ -76,6 +78,45 @@ def update_excess_worksheet(info):
     excess_worksheet = SHEET.worksheet("excess")
     surplus_worksheet.append_row(info)
     print("Excess Worksheet Updated successfully!\n")
+
+
+def calc_excess_info(sales_row):
+    """
+    This compares the sales with the inventory and then calculates the excess or short amount for each bouquet type.
+    The excess is evaluated as the number of sales subtracted from the inventory.
+    * A Negative excess points to the requirement of additional inventory made that week.
+    * A Positive excess results in the number of bouquets that were thrown away.
+    """
+    # Let the user know the calculation is starting.
+    print("Determining Excess data...\n")
+
+    # Get Values from Inventory Worksheet.
+    inventory = SHEET.worksheet("inventory").get_all_info()
+
+    # Get last row of stock data
+    inventory_row = inventory[-1]
+
+    # List to store excess calculation
+    excess_info = []
+
+    # Loop through each value in inventory & sales rows
+    for i in range(len(inventory_row)):
+
+        # Convert inventory to integer
+        inventory_value = int(inventory_row[i])
+
+        # Get sales value from same row
+        sales_value = sales_row[i]
+
+        # Calculate excess
+        excess = inventory_value - sales_value
+
+        # Add new excess values to list
+        excess_info.append(excess)
+
+    return excess_info
+
+
 
 
 
