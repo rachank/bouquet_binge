@@ -117,6 +117,27 @@ def calc_excess_info(sales_row):
     return excess_info
 
 
+def get_latest_sales_info():
+    """
+    Retreives the lastest of 5 weeks of Bouquet sales from the spreadsheet.
+    Returned as a list of lists.
+    """
+    # Access sales worksheet
+    sales_sheet = SHEET.worksheet("sales")
+
+    # Empty list to store last 5 entries
+    last_5_entries = []
+
+    # Loop through columns 1-7
+    for col_index in range(1,8):
+        
+        # Get current column values
+        column_info = sales_sheet.col_values(col_index)
+
+        # Add the last 5 values to list
+        last_5_entries.append(last_5)
+
+    return last_5_entries
 
 
 
