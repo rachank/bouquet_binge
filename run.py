@@ -50,7 +50,7 @@ def obtain_sales_info():
         # If all values are integers, then proceed.
         if all_values:
             print("Sales Information is Valid. Thanks!")
-            valid_info = True
+            break
         
     # Convert values to integers.
     sales_info = [int(value) for value in sales_info]
@@ -140,11 +140,35 @@ def get_latest_sales_info():
     return last_5_entries
 
 
+def calculate_inventory_info(info):
+    """
+    This calculates the average inventory for each item type, 
+    adding 15% for additional available inventory
+    """
+    # Informing user calculations begin
+    print("Calcualting Inventory Information...\n")
+
+    # Loop through each column in inventory, convert values to integers
+    # And calculate average
+    for colum in info:
+        int_column = sum(int_column) / len(int_column)
+        average = sum(int_column) / len(int_column)
+
+        # Increase average inventory value by 15%.
+        inventory_num = average * 1.15
+
+        # Round stock number to nearest whole number, add to list
+        new_inventory_data.append(round(inventory_num)) 
+
+    return new_inventory_data
+
+def main():
+
 
 
 
 print("Welcome to the Bouquet Binge Flower Shop Inventory Information") 
 
-
+main()
 
 
