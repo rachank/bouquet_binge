@@ -23,7 +23,7 @@ def obtain_sales_info():
    
     while True:
         print("Please enter bouquet sales data from the last week of sales.")
-        print("Data order: Roses, Orchids, Lilies, Carnations, Hydrandeas, Mums, and Seasonal.")
+        print("Data order: Roses, Orchids, Lilies, Carnations, Hydrangeas, Mums, and Seasonal.")
         print("Example: 20,30,20,10,20,30,25\n")
 
         # Get users input
@@ -134,13 +134,15 @@ def get_latest_sales_info():
         # Get current column values
         column_info = sales_sheet.col_values(col_index)
 
+        last_5 = column_info[2:]
+
         # Add the last 5 values to list
         last_5_entries.append(last_5)
 
     return last_5_entries
 
 
-def calculate_inventory_info(info):
+def calc_inventory_info(info):
     """
     This calculates the average inventory for each item type, 
     adding 15% for additional available inventory
@@ -163,11 +165,24 @@ def calculate_inventory_info(info):
     return new_inventory_data
 
 def main():
+    """"
+    A function to run all of the program functions
+    """
+    sales_info = obtain_sales_info()
+    update_sales_worksheet(info, "sales")
+    new_excess_info = calc_excess_info(sales_info)
+    update_excess_worksheet(new_excess_info, "excess")
+    latest_sales = get_latest_sales_info()
+    inventory_info = calc_inventory_info(latest_sales)
+    update_worksheet(inventory_info, "inventory")
+
+    print("Welcome to the Bouquet Binge Flower Shop Inventory Information") 
+
+    
+
+    print(sales_info)
 
 
-
-
-print("Welcome to the Bouquet Binge Flower Shop Inventory Information") 
 
 main()
 
