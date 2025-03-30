@@ -102,7 +102,8 @@ def calc_excess_info(sales_row):
     # Loop through each value in inventory & sales rows
     for i in range(len(inventory_row)):
 
-        # Convert inventory to integer
+        # Note: try/except is not necessary because inventory is already a validated 
+        # integer from above.
         inventory_value = int(inventory_row[i])
 
         # Get sales value from same row
@@ -169,21 +170,15 @@ def main():
     A function to run all of the program functions
     """
     sales_info = obtain_sales_info()
-    update_sales_worksheet(info, "sales")
+    update_sales_worksheet(sales_info)
     new_excess_info = calc_excess_info(sales_info)
-    update_excess_worksheet(new_excess_info, "excess")
+    update_excess_worksheet(new_excess_info)
     latest_sales = get_latest_sales_info()
     inventory_info = calc_inventory_info(latest_sales)
     update_worksheet(inventory_info, "inventory")
 
-    print("Welcome to the Bouquet Binge Flower Shop Inventory Information") 
 
-    
-
-    print(sales_info)
-
-
-
+print("Welcome to the Bouquet Binge Flower Shop Inventory Information") 
 main()
 
 
